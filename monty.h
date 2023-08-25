@@ -1,22 +1,24 @@
 #ifndef MONTY_H
 #define MONTY_H
+#define BUF_SIZE 1024
+
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <ctype.h>
+#include <stdarg.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
+
 
 #define DELIMITERS " \n\t\r\v\f"
 
 extern bus_t bus;
-/**
- * struct bus_s - Struct to hold Monty interpreter's global data
- * @file: File pointer for input file
- * @content: Content of the file
- *
- * Description: This structure is used to hold the global data needed
- * for the Monty interpreter. It includes a file pointer for the input
- * file being processed and the content of the file.
- */
+
 typedef struct bus_s
 {
 	FILE *file;
@@ -48,6 +50,17 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
+
+typedef struct param
+{
+	usigned int line_number;
+	char **arr;
+	int n;
+	FILE *file;
+	int entry;
+	int read_len;
+	char buffeer[BUF_SIZE];
+} param;
 typedef struct bus_s
 {
 	FILE *file;
@@ -58,11 +71,11 @@ void pop(stack_t **stack, unsigned int line);
 void push_stack(stack_t **stack, unsigned int line_number);
 void f_add(stack_t **stack, unsigned int line_number);
 void f_pall(stack_t **stack, unsigned int line_number);
-void free_stack(stack_t *head);
+void free_stack(stack_t **head);
 void f_nop(stack_t **stack, unsigned int line_number);
 stack_t *addnode(stack_t **head, int n);
 int main(int argc, char *argv[]);
 int parse_monty_file(char *file_path);
 
-
+extern param *mont;
 #endif /* MONTY_H */

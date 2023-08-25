@@ -3,16 +3,15 @@
  * free_stack - function that frees a doubly linked list
  * @head: pointer to the head of the stack
  */
-void free_stack(stack_t *head)
+void free_stack(stack_t **head)
 {
 	stack_t *aux;
 
-	aux = head;
-
-	while (head)
+	while (*head != NULL)
 	{
-		aux = head->next;
-		free(head);
-		head = aux;
+		aux = *head;
+		*head = (*stack)->next;
+		free(aux);
+		aux = NULL;
 	}
 }
