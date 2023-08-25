@@ -17,14 +17,6 @@
 
 #define DELIMITERS " \n\t\r\v\f"
 
-extern bus_t bus;
-
-typedef struct bus_s
-{
-	FILE *file;
-	char *content;
-} bus_t
-
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -61,11 +53,6 @@ typedef struct param
 	int read_len;
 	char buffeer[BUF_SIZE];
 } param;
-typedef struct bus_s
-{
-	FILE *file;
-	char *content;
-} bus_t;
 
 void pop(stack_t **stack, unsigned int line);
 void push_stack(stack_t **stack, unsigned int line_number);
@@ -75,9 +62,9 @@ void free_stack(stack_t **head);
 void f_nop(stack_t **stack, unsigned int line_number);
 stack_t *addnode(stack_t **head, int n);
 int main(int argc, char *argv[]);
-void config(void)
-void print_line_number(unsigned int line)
-void loc_error(void)
+void config(void);
+void print_line_number(unsigned int line);
+void loc_error(void);
 int parse_monty_file(char *file_path);
 
 extern param *mont;

@@ -29,13 +29,13 @@ int parse_monty_file(char *file_path)
 	FILE *file = fopen(file_path, "r");
 	unsigned int line_number = 0;
 
+	mont->file
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", file_path);
 		return (0);
 	}
 	free(line);
-	fclose(file);
+	fclose(monty->file);
 	return (1);
 }
-
